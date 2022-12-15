@@ -11,6 +11,23 @@ def index(request):
         return render(request, 'base.html', {'correncies': currencies})
 
     if request.method == 'POST':
+        if request.POST.get('from_cur') == 'Choose Input Currency' or request.POST.get('from_cur') == '!!CHOOSE CURRENCY!!' :
+            error = 'please choose input currency!'
+            if request.POST.get('input'):
+                input = request.POST.get('input')
+            return render(request, 'base.html', {'correncies': currencies, 'error': error, 'input': input})
+        if request.POST.get('in_cur') == 'Choose Output Currency' or request.POST.get('in_cur') == '!!CHOOSE CURRENCY!!' :
+            error = 'please choose output currency!'
+            if request.POST.get('input'):
+                input = request.POST.get('input')
+            return render(request, 'base.html', {'correncies': currencies, 'error': error, 'input': input})
+        if  request.POST.get('input') == None:
+            error_type = 'not valid data'
+
+            input_currncy = request.POST.get("from_cur")
+            output_currncy = request.POST.get("in_cur")
+            return render(request, 'base.html', {'correncies': currencies, 'error_type': error_type, 'input_currency': input_currncy, 'output_currncy': output_currncy})
+
         ammount = request.POST.get('input')
         input_currncy = request.POST.get("from_cur")
         output_currncy = request.POST.get("in_cur")
