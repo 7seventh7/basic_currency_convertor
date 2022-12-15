@@ -1,4 +1,27 @@
 .container {
-    background-color: violet;
-    color: darkblue;
+    background-color: dimgray;
+    color: lightgray;
+}
+
+.parent {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    background-color: rgba(4,10,15,0.85);
+}
+
+.block {
+    width: 850px;
+    height: 250px;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    margin: -125px 0 0 -125px;
+}
+
+.btn {
+    margin: 5px 0px 5px 0px;
 }
