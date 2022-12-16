@@ -1,8 +1,10 @@
-from django.contrib import admin
 from django.urls import path
-from currency_convertor.views import index
+
+from .views import *
 
 urlpatterns = [
 
-    path('', index, name = 'index'),
+    path('', index, name='index'),
+    path('form', work_with_form, name='form'),
+
 ]

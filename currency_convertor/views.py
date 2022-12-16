@@ -1,6 +1,8 @@
 from django.shortcuts import render
 import requests
 
+from currency_convertor.forms import AddConvertationForm
+
 
 
 def index(request):
@@ -8,6 +10,7 @@ def index(request):
     responce = requests.get(url='https://openexchangerates.org/api/latest.json?app_id=e25bb4b9724d4b13bc092f9eae443c7b').json()
     currencies = responce.get('rates')
     if request.method == 'GET':
+
         return render(request, 'base.html', {'correncies': currencies})
 
     if request.method == 'POST':
@@ -38,3 +41,15 @@ def index(request):
         print('exchenge=', exchange)
         return render(request, 'base.html', {'correncies': currencies, 'ammount': ammount, 'input_currency': input_currncy, 'output_currncy': output_currncy, 'exchange': exchange})
 
+def work_with_form(request):
+    form = AddConvertationForm()
+
+    responce = requests.get(
+        url='https://openexchangerates.org/api/latest.json?app_id=e25bb4b9724d4b13bc092f9eae443c7b').json()
+    currencies = responce.get('rates')  #<----------------------THIS LIST
+
+    if request.method == 'GET':
+        form.course = 2.22 #<-------------------WHANT TO SEE IN THIS FIELD
+        return render(request, 'base_form.html', {'form': form})
+
+    return render(request, 'base_form.html', {'form': form})
